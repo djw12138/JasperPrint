@@ -1,5 +1,6 @@
 package jasper.print;
 
+import jasper.util.PrintUtil;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
@@ -30,7 +31,10 @@ public class printTest {
             JRDataSource dataSource =new JREmptyDataSource();
             JasperPrint jasperPrint = JasperFillManager.fillReport(path+jasperPath+jasperName,params,dataSource);
             JasperExportManager.exportReportToPdfFile(jasperPrint,path+pdfPath+pdfName);
+            PrintUtil.defaultPrintPDF(path+pdfPath+pdfName);
         } catch (JRException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
